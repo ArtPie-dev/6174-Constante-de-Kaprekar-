@@ -1,0 +1,50 @@
+numero = int(input("Digite um numero de 4 digitos: "))
+
+if numero < 0:
+    print("Numero invalido")
+
+elif numero > 9999:
+    print("Numero invalido")
+
+else:
+    contador = 0
+
+    while numero != 6174 and contador < 7:
+
+        a = numero // 1000
+        b = (numero % 1000) // 100
+        c = (numero % 100) // 10
+        d = numero % 10
+
+        for i in range(4):
+
+            if a < b:
+                temp = a
+                a = b
+                b = temp
+
+            if b < c:
+                temp = b
+                b = c
+                c = temp
+
+            if c < d:
+                temp = c
+                c = d
+                d = temp
+
+        maior = a * 1000 + b * 100 + c * 10 + d
+        menor = d * 1000 + c * 100 + b * 10 + a
+
+        resultado = maior - menor
+
+        contador = contador + 1
+
+        print("Iteracao", contador, ":", maior, "-", menor, "=", resultado)
+
+        numero = resultado
+
+    if numero == 6174:
+        print("Constante de Kaprekar atingida em", contador, "iteracoes.")
+    else:
+        print("Nao foi possivel chegar em 6174.")
